@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      border-radius: 24px;
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: #e63946;
+    }
+    p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+    }
+    button {
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:active { transform: scale(0.95); }
+    .yes {
+      background: #e63946;
+      color: white;
+      box-shadow: 0 10px 20px rgba(230,57,70,0.35);
+    }
+    .yes:hover { box-shadow: 0 14px 28px rgba(230,57,70,0.45); }
+    .no {
+      background: #f1f1f1;
+      color: #555;
+      position: relative;
+    }
+    .message {
+      margin-top: 25px;
+      font-size: 1.1rem;
+      color: #e63946;
+      display: none;
+    }
+    .heart {
+      position: absolute;
+      color: #e63946;
+      font-size: 20px;
+      animation: floatUp 3s ease-in forwards;
+      opacity: 0.8;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.9; }
+      100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Will you be my Valentine? ❤️</h1>
+    <p>I promise to always be your girl if you say YES!</p>
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Yes</button>
+      <button class="no" onmouseover="moveNo()">No</button>
+    </div>
+    <div class="message" id="message">Yay! 💖 You just made my heart very happy.</div>
+  </div>
+
+  <script>
+    function sayYes() {
+      const msg = document.getElementById('message');
+      msg.style.display = 'block';
+      for (let i = 0; i < 15; i++) {
+        createHeart();
+      }
+    }
+
+    function moveNo() {
+      const btn = document.querySelector('.no');
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight - 50 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+  </script>
+</body>
+</html>
